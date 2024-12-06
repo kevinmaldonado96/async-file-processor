@@ -1,0 +1,33 @@
+# Use the official Python image as the base image
+FROM python:3.9
+
+# Set the working directory in the container
+WORKDIR /app
+
+# Copy storage user service credentials
+COPY credentials.json .
+
+# modify permissions
+RUN chmod 775 /app/credentials.json
+
+# Set environment
+ENV GOOGLE_APPLICATION_CREDENTIALS="/app/credentials.json"
+
+# Copy the rest of the application code into the container
+COPY . .
+
+# Copy the requirements file into the container
+COPY app.py .
+
+# import ffmpeg
+RUN apt-get -y update
+RUN apt-get install -y ffmpeg
+
+# Install dependencies
+RUN pip install -r requirements.txt
+
+# Expose the port on which your Flask app will run
+EXPOSE 5000
+
+# Define the command to start your Flask app
+CMD ["flask", "run", "-h", "0.0.0.0"]

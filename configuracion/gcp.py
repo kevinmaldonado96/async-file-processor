@@ -1,0 +1,5 @@
+NOMBRE_BUCKET = "video_format_converter_v2"
+URL_BUCKET = "https://storage.googleapis.com/video_format_converter_v2/"
+PROJECT_ID = "conversor-grupo-10-v2"
+TOPIC_ID = "video_format_converter_topic_v2"
+SUBSCRIPTION = "video_format_converter_topic_v2-sub"
